@@ -1,5 +1,5 @@
 import sys
-import finalproj
+import model
 from tkinter import *
 from tkinter import font as tkFont
 
