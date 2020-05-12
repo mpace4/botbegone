@@ -1,4 +1,4 @@
-import finalproj
+import model
 
 def main():
     finalproj.main()
