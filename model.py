@@ -1,6 +1,5 @@
 import tweepy
 import datetime
-import view
 from datetime import *
 from datetime import timedelta
 
@@ -178,7 +177,6 @@ def checkPic() -> None:
 def checkDate() -> None:
     """Check how new the user is"""
     global usercreatedts, botPoints
-    current_date = datetime.now()
     checkDatePoints = 0
     if usercreatedts > (datetime.now() - timedelta(days = 7)):
         checkDatePoints = 5
