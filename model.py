@@ -22,6 +22,8 @@ botPoints = 0
 # validate username
 def validate_username(username:str) -> None:
     """validate if username is valid or not, if not, raise Value Error"""
+    if username == "":
+        raise ValueError
     try:
         dummy = api.user_timeline(id=username, count=1)
         del dummy
@@ -174,6 +176,7 @@ def checkPic() -> None:
     outputList.append(f"profile picture: {picPoints} out of 5")
     botPoints += picPoints
 
+
 def checkDate() -> None:
     """Check how new the user is"""
     global usercreatedts, botPoints
@@ -213,3 +216,5 @@ def bot_points(username:str) -> list:
     outputList.append(f"total bot points: {botPoints}")
     
     return outputList
+
+    

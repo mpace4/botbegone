@@ -9,6 +9,7 @@ def twitter_username_input() -> str:
     root = Tk()
     root.title("Botbegone")
     root.resizable(False, False)
+    root.iconbitmap("media/tweet.ico")
     username = None
     windowWidth = root.winfo_reqwidth()
     windowHeight = root.winfo_reqheight()
@@ -44,28 +45,30 @@ def twitter_username_input() -> str:
         usernameSubmit()
 
 
-    usernameLabel = Label(root, text="Twitter User Name")
+    usernameLabel = Label(root, text="Input Twitter User Name")
     usernameEntry = Entry(root, bd=5, justify="right")
     submitBtn = Button(root, text="submit", command=usernameSubmit)
     helpBtn = Button(root, text="help", command=user_help)
     exitBtn = Button(root, text="exit", command=exitProgram)
     
-    usernameLabel.grid(row=0, column=0, columnspan=2, padx = 5, pady=5)
-    usernameEntry.grid(row=1, column=0, padx = 5, pady=5)
+    usernameLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
+    usernameEntry.grid(row=1, column=0, padx=10, pady=5)
     submitBtn.grid(row=1, column=1, padx=5, pady=5)
     helpBtn.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
-    exitBtn.grid(row=2, column=1, columnspan=2, padx=5, pady=5)
+    exitBtn.grid(row=2, column=1, columnspan=1, padx=5, pady=5)
     
     root.bind("<Return>", press_enter)
     
     mainloop()
     return username
 
+
 # gui to display output
 def display_output(listOutput:list) -> None:
     root2 = Tk()
     root2.title("Botbegone")
     root2.resizable(False, False)
+    root2.iconbitmap("media/tweet.ico")
     windowWidth = root2.winfo_reqwidth()
     windowHeight = root2.winfo_reqheight()
     positionRight = int(root2.winfo_screenwidth()/2 - windowWidth/2)
@@ -105,4 +108,6 @@ def display_output(listOutput:list) -> None:
     goAgainButton.grid(row=7, column=0, padx=5, pady=5)
     
     root2.mainloop()
+    
+    
     
