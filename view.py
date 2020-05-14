@@ -1,10 +1,10 @@
 import sys
-import model
-from tkinter import *
+import controller
+from tkinter import Label, Button, Tk, messagebox, Entry, mainloop
 from tkinter import font as tkFont
 
-
-def twitter_username_input():
+# gui to ask for twitter username
+def twitter_username_input() -> str:
     global username
     root = Tk()
     root.title("Botbegone")
@@ -38,10 +38,12 @@ def twitter_username_input():
                             "displayed. \nWhen inputting a username, just "
                             "type in the twitter accounts name without the "
                             "“@” where prompted to. ")
-    
+
+
     def press_enter(event):
         usernameSubmit()
-    
+
+
     usernameLabel = Label(root, text="Twitter User Name")
     usernameEntry = Entry(root, bd=5, justify="right")
     submitBtn = Button(root, text="submit", command=usernameSubmit)
@@ -59,7 +61,8 @@ def twitter_username_input():
     mainloop()
     return username
 
-def display_output(listOutput:list):
+# gui to display output
+def display_output(listOutput:list) -> None:
     root2 = Tk()
     root2.title("Botbegone")
     root2.resizable(False, False)
@@ -71,13 +74,16 @@ def display_output(listOutput:list):
     
     bbFont = tkFont.Font(family="times", size=15, weight="bold")
     bbFont2 = tkFont.Font(family="Helvetica", size=12, weight="normal")
-    
+
+
     def exitProgram():
         root2.destroy()
         sys.exit()
-    
+
+
     def goAgain():
-        twitter_username_input()
+        root2.destroy()
+        controller.main()
         
         
     outputLabel = Label(root2, text=listOutput[0], font=bbFont2)
@@ -87,17 +93,16 @@ def display_output(listOutput:list):
     outputLabel5 = Label(root2, text=listOutput[4], font = bbFont2)
     outputLabel6 = Label(root2, text=listOutput[5], font = bbFont)
     exitButton = Button(root2, text="Close", command=exitProgram, font=bbFont)
-    goAgainButton = Button(root2, text="Look up another user", command=goAgain, font=bbFont)
-    outputLabel.grid(row=0, column=0, )
-    outputLabel2.grid(row=1, column=0, )
-    outputLabel3.grid(row=2, column=0, )
-    outputLabel4.grid(row=3, column=0, )
-    outputLabel5.grid(row=4, column=0, )
-    outputLabel6.grid(row=5, column=0, )
+    goAgainButton = Button(root2, text="Look up another user",
+                           command=goAgain, font=bbFont)
+    outputLabel.grid(row=0, column=0)
+    outputLabel2.grid(row=1, column=0)
+    outputLabel3.grid(row=2, column=0)
+    outputLabel4.grid(row=3, column=0)
+    outputLabel5.grid(row=4, column=0)
+    outputLabel6.grid(row=5, column=0)
     exitButton.grid(row=6, column=0)
-    goAgainButton.grid(row=7, column = 0)
+    goAgainButton.grid(row=7, column=0, padx=5, pady=5)
     
     root2.mainloop()
-    
-    
     
