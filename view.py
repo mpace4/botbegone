@@ -13,7 +13,7 @@ def twitter_username_input() -> str:
     root = Tk()
     root.title("Botbegone")
     root.resizable(False, False)
-    root.iconbitmap("media/tweet.ico")
+    root.iconbitmap("C:/Users/ythua/Desktop/botbegone-master/media/tweet.ico")
     root.configure(bg=bgColor)
 
     username = None
@@ -27,12 +27,13 @@ def twitter_username_input() -> str:
 
     def exitProgram():
         root.destroy()
+        sys.exit(0)
 
     def usernameSubmit():
         global username
         print(f"Checking twitter username: @{usernameEntry.get()}")
         username = usernameEntry.get()
-        exitProgram()
+        root.destroy()
 
     def user_help():
         messagebox.showinfo("help", "This is a simple program to check the "
@@ -80,7 +81,7 @@ def display_output(listOutput: list) -> None:
     root2 = Tk()
     root2.title("Botbegone")
     root2.resizable(False, False)
-    root2.iconbitmap("media/tweet.ico")
+    root2.iconbitmap("C:/Users/ythua/Desktop/botbegone-master/media/tweet.ico")
     windowWidth = root2.winfo_reqwidth()
     windowHeight = root2.winfo_reqheight()
     positionRight = int(root2.winfo_screenwidth()/2 - windowWidth/2)
