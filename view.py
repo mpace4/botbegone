@@ -3,6 +3,10 @@ import controller
 from tkinter import Label, Button, Tk, messagebox, Entry, mainloop
 from tkinter import font as tkFont
 
+bgColor = "floral white"
+btnColor = "PaleTurquoise1"
+
+
 # gui to ask for twitter username
 def twitter_username_input() -> str:
     global username
@@ -10,6 +14,8 @@ def twitter_username_input() -> str:
     root.title("Botbegone")
     root.resizable(False, False)
     root.iconbitmap("media/tweet.ico")
+    root.configure(bg=bgColor)
+    
     username = None
     windowWidth = root.winfo_reqwidth()
     windowHeight = root.winfo_reqheight()
@@ -17,7 +23,8 @@ def twitter_username_input() -> str:
     positionDown = int(root.winfo_screenheight()/2 - windowHeight/2)
     root.geometry("+{}+{}".format(positionRight, positionDown))
     
-    bbFont = tkFont.Font(family="times", size=30, weight="bold")
+    
+    bbFont = tkFont.Font(family="helvetica", size=15, weight="bold")
     
     def exitProgram():
         root.destroy()
@@ -45,17 +52,25 @@ def twitter_username_input() -> str:
         usernameSubmit()
 
 
-    usernameLabel = Label(root, text="Input Twitter User Name")
-    usernameEntry = Entry(root, bd=5, justify="right")
-    submitBtn = Button(root, text="submit", command=usernameSubmit)
-    helpBtn = Button(root, text="help", command=user_help)
-    exitBtn = Button(root, text="exit", command=exitProgram)
+    usernameLabel = Label(root, text="Input Twitter User Name",
+                          font=bbFont, bg=bgColor, bd=5)
+    usernameEntry = Entry(root, bd=10, justify="right", font=bbFont)
+    submitBtn = Button(root, text="submit", command=usernameSubmit, bd=5,
+                       font=bbFont)
+    helpBtn = Button(root, text="help", command=user_help, bd=5,
+                     font=bbFont)
+    exitBtn = Button(root, text="exit", command=exitProgram, bd=5,
+                     font=bbFont)
     
     usernameLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    usernameEntry.grid(row=1, column=0, padx=10, pady=5)
-    submitBtn.grid(row=1, column=1, padx=5, pady=5)
-    helpBtn.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
-    exitBtn.grid(row=2, column=1, columnspan=1, padx=5, pady=5)
+    usernameEntry.grid(row=1, column=0, padx=(10, 0))
+    submitBtn.grid(row=1, column=1, padx=5, pady=10)
+    helpBtn.grid(row=2, column=0, columnspan=1, padx=10, pady=(0, 10), ipadx=85)
+    exitBtn.grid(row=2, column=1, columnspan=1, padx=10, pady=(0, 10), ipadx=13)
+
+    submitBtn.configure(bg=btnColor)
+    exitBtn.configure(bg=btnColor)
+    helpBtn.configure(bg=btnColor)
     
     root.bind("<Return>", press_enter)
     
@@ -74,8 +89,9 @@ def display_output(listOutput:list) -> None:
     positionRight = int(root2.winfo_screenwidth()/2 - windowWidth/2)
     positionDown = int(root2.winfo_screenheight()/2 - windowHeight/2)
     root2.geometry("+{}+{}".format(positionRight, positionDown))
+    root2.configure(bg=bgColor)
     
-    bbFont = tkFont.Font(family="times", size=15, weight="bold")
+    bbFont = tkFont.Font(family="times", size=18, weight="bold")
     bbFont2 = tkFont.Font(family="Helvetica", size=12, weight="normal")
 
 
@@ -95,17 +111,29 @@ def display_output(listOutput:list) -> None:
     outputLabel4 = Label(root2, text=listOutput[3], font = bbFont2)
     outputLabel5 = Label(root2, text=listOutput[4], font = bbFont2)
     outputLabel6 = Label(root2, text=listOutput[5], font = bbFont)
-    exitButton = Button(root2, text="Close", command=exitProgram, font=bbFont)
-    goAgainButton = Button(root2, text="Look up another user",
+    exitButton = Button(root2, text="Close", command=exitProgram, font=bbFont,
+                        bd=5)
+    goAgainButton = Button(root2, text="Look up another user", bd=5,
                            command=goAgain, font=bbFont)
+    
     outputLabel.grid(row=0, column=0)
     outputLabel2.grid(row=1, column=0)
     outputLabel3.grid(row=2, column=0)
     outputLabel4.grid(row=3, column=0)
     outputLabel5.grid(row=4, column=0)
     outputLabel6.grid(row=5, column=0)
-    exitButton.grid(row=6, column=0)
-    goAgainButton.grid(row=7, column=0, padx=5, pady=5)
+    goAgainButton.grid(row=6, column=0, padx=5, pady=5)
+    exitButton.grid(row=7, column=0, ipadx=82, padx=5, pady=5)
+    
+
+    outputLabel.configure(bg=bgColor)
+    outputLabel2.configure(bg=bgColor)
+    outputLabel3.configure(bg=bgColor)
+    outputLabel4.configure(bg=bgColor)
+    outputLabel5.configure(bg=bgColor)
+    outputLabel6.configure(bg=bgColor)
+    exitButton.configure(bg=btnColor)
+    goAgainButton.configure(bg=btnColor)
     
     root2.mainloop()
     
