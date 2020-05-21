@@ -20,7 +20,7 @@ botPoints = 0
 
 
 # validate username
-def validate_username(username:str) -> None:
+def validate_username(username: str) -> None:
     """validate if username is valid or not, if not, raise Value Error"""
     if username == "":
         raise ValueError
@@ -29,22 +29,22 @@ def validate_username(username:str) -> None:
         del dummy
     except tweepy.TweepError:
         raise ValueError
-        
 
-def search(username:str):
+
+def search(username: str):
     """search and process user information: username, account description,
         tweets, location, folllwing, followers, profile picture"""
     global acctDesc, tweetText, location, following, follwers
     global totaltweets, usercreatedts, count, profile_pic
-    
+
     for tweet in api.user_timeline(id=username, count=count):
         totaltweets = tweet.user.statuses_count
         if totaltweets < count:
             count = totaltweets
-        
+
         tweetTime.append(tweet.created_at)
         tweetText.append(tweet.text)
-    
+
     acctDesc = tweet.user.description
     location = tweet.user.location
     following = tweet.user.friends_count
@@ -77,7 +77,7 @@ def tweetChecker() -> None:
     while (num < counter - 1):
         first_list = tweetText[num]
         first_list = [word.strip(",.()/*-+`~!@#$%^&*;=<>?")
-                 for word in first_list.lower().split(" ")]
+                      for word in first_list.lower().split(" ")]
         set1 = set(first_list)
         num = num + 1
         element = num
@@ -85,11 +85,11 @@ def tweetChecker() -> None:
         while(element < counter):
             sec_list = tweetText[element]
             sec_list = [word.strip(",.()/*-+`~!@#$%^&*;=<>?")
-                 for word in sec_list.lower().split(" ")]
+                        for word in sec_list.lower().split(" ")]
             set2 = set(sec_list)
             intersection = set1 & set2
             length = len(set1) + len(set2)
-            total = (len(intersection) * 2) / length 
+            total = (len(intersection) * 2) / length
             if total >= .50:
                 tweetCheckerPoints = 5
             elif total >= .35:
@@ -101,7 +101,7 @@ def tweetChecker() -> None:
     tweetCheckerPoints = tweetCheckerPoints / num_compare
     if tweetCheckerPoints < 1:
         tweetCheckerPoints = 0
-    outputList.append(f"tweet checker: {tweetCheckerPoints} out of 5")
+    outputList.append(f"Tweet checker: {tweetCheckerPoints} out of 5")
     botPoints += tweetCheckerPoints
 
 
@@ -147,12 +147,12 @@ def tweetDateTime() -> None:
         list1min = int(list1[minstart:minend])
         list2min = int(list2[minstart:minend])
         num = num + 1
-        
+
         if list1month != list2month or list1day != list2day:
             if list1hour == list2hour:
-               matches = matches + 1
+                matches = matches + 1
         elif list1day == list2day or list1hour != list2hour:
-            if list1min + 5 > list2min or list1min - 5 < list2min :
+            if list1min + 5 > list2min or list1min - 5 < list2min:
                 matches = matches + 1
     total = matches / pairs
     if total >= .50:
@@ -161,7 +161,7 @@ def tweetDateTime() -> None:
         tweetDatePoints = 3
     elif total >= .20:
         tweetDatePoints = 1
-    outputList.append(f"tweet time: {tweetDatePoints} out of 5")
+    outputList.append(f"Tweet time: {tweetDatePoints} out of 5")
     botPoints += tweetDatePoints
 
 
@@ -170,10 +170,9 @@ def checkPic() -> None:
     global profile_pic, botPoints
     picPoints = 0
     if profile_pic == "http://abs.twimg.com/sticky/default_profile_images/"\
-                        "default_profile_normal.png":
+                      "default_profile_normal.png":
         picPoints = 5
-    
-    outputList.append(f"profile picture: {picPoints} out of 5")
+    outputList.append(f"Profile picture: {picPoints} out of 5")
     botPoints += picPoints
 
 
@@ -181,14 +180,14 @@ def checkDate() -> None:
     """Check how new the user is"""
     global usercreatedts, botPoints
     checkDatePoints = 0
-    if usercreatedts > (datetime.now() - timedelta(days = 7)):
+    if usercreatedts > (datetime.now() - timedelta(days=7)):
         checkDatePoints = 5
-    elif usercreatedts > (datetime.now() - timedelta(days = 30)):
+    elif usercreatedts > (datetime.now() - timedelta(days=30)):
         checkDatePoints = 3
-    elif usercreatedts > (datetime.now() - timedelta(days = 60)):
+    elif usercreatedts > (datetime.now() - timedelta(days=60)):
         checkDatePoints = 1
 
-    outputList.append(f"check date: {checkDatePoints} out of 5")
+    outputList.append(f"Check date: {checkDatePoints} out of 5")
     botPoints += checkDatePoints
 
 
@@ -198,11 +197,11 @@ def checkBio() -> None:
     bioPoints = 0
     if acctDesc == "":
         bioPoints = 3
-    outputList.append(f"check bio: {bioPoints} out of 3")
+    outputList.append(f"Check bio: {bioPoints} out of 3")
     botPoints += bioPoints
 
 
-def bot_points(username:str) -> list:
+def bot_points(username: str) -> list:
     """take a string of username, process the bot points,
         return an output of list"""
     search(username)
@@ -213,8 +212,6 @@ def bot_points(username:str) -> list:
     checkRT()
     checkBio()
     tweetDateTime()
-    outputList.append(f"total bot points: {botPoints}")
-    
-    return outputList
+    outputList.append(f"Total bot points: {botPoints}")
 
-    
+    return outputList
