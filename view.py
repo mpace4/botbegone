@@ -13,7 +13,7 @@ def twitter_username_input() -> str:
     root = Tk()
     root.title("Botbegone")
     root.resizable(False, False)
-   # root.iconbitmap("D:/Chrome DLs/botbegone/botbegone-master/tweet.ico")
+    root.iconbitmap("media/tweet.ico")
     root.configure(bg=bgColor)
 
     username = None
@@ -82,7 +82,7 @@ def display_output(listOutput: list) -> None:
     root2 = Tk()
     root2.title("Botbegone")
     root2.resizable(False, False)
-    #root2.iconbitmap("D:/Chrome DLs/botbegone/botbegone-master/tweet.ico")
+    root2.iconbitmap("media/tweet.ico")
     windowWidth = root2.winfo_reqwidth()
     windowHeight = root2.winfo_reqheight()
     positionRight = int(root2.winfo_screenwidth()/2 - windowWidth/2)
