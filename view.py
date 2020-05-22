@@ -13,7 +13,7 @@ def twitter_username_input() -> str:
     root = Tk()
     root.title("Botbegone")
     root.resizable(False, False)
-    root.iconbitmap("C:/Users/ythua/Desktop/botbegone-master/media/tweet.ico")
+   # root.iconbitmap("D:/Chrome DLs/botbegone/botbegone-master/tweet.ico")
     root.configure(bg=bgColor)
 
     username = None
@@ -39,11 +39,12 @@ def twitter_username_input() -> str:
         messagebox.showinfo("help", "This is a simple program to check the "
                             "probability if a twitter account is a bot! Just "
                             "type the username of the person you would like "
-                            "to check in the box and hit enter, the % chance "
-                            "of that account being a bot will then be "
-                            "displayed. \nWhen inputting a username, just "
-                            "type in the twitter accounts name without the "
-                            "“@” where prompted to. ")
+                            "to check in the box and hit enter, the number of "
+                            "bot points will then be displayed. The higher "
+                            "the bot points the more likely it is for that "
+                            "account to be a bot \nWhen inputting a username,"
+                            "just type in the twitter accounts name without "
+                            "the “@” where prompted to. ")
 
     def press_enter(event):
         usernameSubmit()
@@ -81,7 +82,7 @@ def display_output(listOutput: list) -> None:
     root2 = Tk()
     root2.title("Botbegone")
     root2.resizable(False, False)
-    root2.iconbitmap("C:/Users/ythua/Desktop/botbegone-master/media/tweet.ico")
+    #root2.iconbitmap("D:/Chrome DLs/botbegone/botbegone-master/tweet.ico")
     windowWidth = root2.winfo_reqwidth()
     windowHeight = root2.winfo_reqheight()
     positionRight = int(root2.winfo_screenwidth()/2 - windowWidth/2)
@@ -105,7 +106,8 @@ def display_output(listOutput: list) -> None:
     outputLabel3 = Label(root2, text=listOutput[2], font=bbFont2)
     outputLabel4 = Label(root2, text=listOutput[3], font=bbFont2)
     outputLabel5 = Label(root2, text=listOutput[4], font=bbFont2)
-    outputLabel6 = Label(root2, text=listOutput[5], font=bbFont)
+    outputLabel6 = Label(root2, text=listOutput[5], font=bbFont2)
+    outputlabel7 = Label(root2, text=listOutput[6], font=bbFont)
     exitButton = Button(root2, text="Close", command=exitProgram, font=bbFont,
                         bd=5)
     goAgainButton = Button(root2, text="Look up another user", bd=5,
@@ -117,8 +119,9 @@ def display_output(listOutput: list) -> None:
     outputLabel4.grid(row=3, column=0)
     outputLabel5.grid(row=4, column=0)
     outputLabel6.grid(row=5, column=0)
-    goAgainButton.grid(row=6, column=0, padx=5, pady=5)
-    exitButton.grid(row=7, column=0, ipadx=82, padx=5, pady=5)
+    outputlabel7.grid(row=6, column=0)
+    goAgainButton.grid(row=7, column=0, padx=5, pady=5)
+    exitButton.grid(row=8, column=0, ipadx=82, padx=5, pady=5)
 
     outputLabel.configure(bg=bgColor)
     outputLabel2.configure(bg=bgColor)

@@ -104,21 +104,6 @@ def tweetChecker() -> None:
     outputList.append(f"Tweet checker: {tweetCheckerPoints} out of 5")
     botPoints += tweetCheckerPoints
 
-
-def checkRT():
-    global botPoints, RTPoints
-    rtNum = rtcount / count
-    if rtNum >= .60:
-        botPoints = botPoints + 5
-        RTPoints = 5
-    elif rtNum >= .45:
-        botPoints = botPoints + 3
-        RTPoints = 3
-    elif rtNum >= .30:
-        botPoints = botPoints + 1
-        RTPoints = 1
-
-
 def tweetDateTime() -> None:
     global tweetTime
     global botPoints
@@ -199,6 +184,21 @@ def checkBio() -> None:
         bioPoints = 3
     outputList.append(f"Check bio: {bioPoints} out of 3")
     botPoints += bioPoints
+    
+def checkRT():
+    global botPoints
+    rtNum = rtcount / count
+    RTPoints = 0
+    if rtNum >= .60:
+        botPoints = botPoints + 5
+        RTPoints = 5
+    elif rtNum >= .45:
+        botPoints = botPoints + 3
+        RTPoints = 3
+    elif rtNum >= .30:
+        botPoints = botPoints + 1
+        RTPoints = 1
+    outputList.append(f"Check retweets: {RTPoints} out of 5")
 
 
 def bot_points(username: str) -> list:
